@@ -30,6 +30,7 @@
     <table class="table table-success table-striped">
         <thead>
             <tr>
+
                 <th scope="col">serial</th>
                 <th scope="col">Customer Name</th>
                 <th scope="col">Customer Email</th>
@@ -47,9 +48,8 @@
                     <td>{{ $data->address }}</td>
                     <td>{{ $data->phone }}</td>
                     <td>
-                        <a class="text-primary mx-2" href="#"><i class="far fa-eye"></i></a>
-                        <a class="text-danger mx-2" href=""><i class="far fa-trash-alt"></i></a>
-                        <a class="text-success mx-2" href=""><i class="far fa-edit"></i></a>
+                        <a class="btn btn-danger" href="{{route('customer.delete',$data['id'])}}"> Delete</a>
+                        {{-- <a class="btn btn-danger" href="{{route('customer.edit')}}"> Edit </a> --}}
                     </td>
                 </tr>
             </tbody>

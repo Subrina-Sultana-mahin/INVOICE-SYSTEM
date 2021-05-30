@@ -28,7 +28,10 @@
         {{-- @dd($customer); --}}
 
         <input type="hidden" name="total_amount" value="{{$totalPrice}}">
-    <div class="row">
+        <input type="hidden" name="customer_id" value="{{$customer_id}}">
+
+
+    {{-- <div class="row">
         <div class="col-md-6">
             <div class="row mb-3">
                 <label for="inputPassword3" class="col-sm-2 col-form-label">Customer Name</label>
@@ -65,7 +68,7 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div> --}}
     {{-- add product for sale --}}
     <div class="d-flex justify-content-end">
         <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#exampleModal">
@@ -85,7 +88,7 @@
                     <th scope="col" colspan="2">Handle</th>
                 </tr>
             </thead>
-            {{-- @dd($addItem) --}}
+            {{-- @dd($addItem); --}}
             @foreach ($addItem as $key=>$item)
 
             <tbody class="text-center">
@@ -105,7 +108,7 @@
             <tfoot>
                 <td colspan="2"></td>
                 <td colspan="2" class="fw-bold">Total sold Product Quantity= {{$totalItems}}  </td>
-                <td colspan="3" class="fw-bold"> Total Amount= {{$totalPrice}}</td>
+                <td colspan="3" class="fw-bold"> Total Amount= {{$totalPrice}} BDT</td>
             </tfoot>
         </table>
         <div>
@@ -131,8 +134,8 @@
                             <div class="mb-3">
 
                                 <div class="mb-3">
-                                    <label for="exampleFormControlInput1" class="form-label">Select Name</label>
-                                    <select class="form-select" name="item_id">
+                                    <label for="exampleFormControlInput1" class="form-label">Customer</label>
+                                    <select class="form-select" name="customer_id">
                                         <option selected>Select customer</option>
                                         @foreach ($customer as $data)
                                             <option value="{{$data->id}}" >{{ $data->email}}</option>
@@ -142,9 +145,9 @@
 
                             </div>
                             <div class="mb-3">
-                                <label for="exampleFormControlInput1" class="form-label">Select Name</label>
+                                <label for="exampleFormControlInput1" class="form-label">Item</label>
                                 <select class="form-select" name="item_id">
-                                    <option selected>Select Items</option>
+                                    <option selected>Select Item</option>
                                     @foreach ($items as $data)
                                         <option value="{{$data->id}}" >{{ $data->name }}- {{$data->unit}}Qty</option>
                                     @endforeach

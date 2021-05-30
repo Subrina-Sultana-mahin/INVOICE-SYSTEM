@@ -44,11 +44,7 @@
                     <td></td>
                     <td></td>
                     <td>
-                        <a class="text-primary mx-2" href="#"><i class="far fa-eye"></i></a>
-                        <a class="text-danger mx-2" href=""><i
-                                class="far fa-trash-alt"></i></a>
-                        <a class="text-success mx-2" href=""><i
-                                class="far fa-edit"></i></a>
+                        <a class="btn btn-danger" href="#"> Delete</a>
                     </td>
                 </tr>
             </tbody>

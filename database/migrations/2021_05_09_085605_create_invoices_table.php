@@ -17,7 +17,7 @@ class CreateInvoicesTable extends Migration
             $table->id();
             $table->foreignId('customer_id')->constrained()->restrictOnDelete();
             $table->integer('total_amount');
-            $table->integer('invoice_no');
+            $table->integer('invoice_no')->nullable();
             $table->timestamps();
         });
     }

@@ -40,14 +40,19 @@ Route::group(['prefix' => 'admin'], function () {
         Route::get('/customers', [CustomersController::class, 'customers'])->name('customer.list');
         Route::get('/add-customer', [CustomersController::class, 'addCustomer'])->name('addCustomer.list');
         Route::post('/add-customer', [CustomersController::class, 'createCustomer'])->name('addCustomer.create');
+        Route::get('/customer/delete/{id}', [CustomersController::class, 'delete'])->name("customer.delete");
+       // Route::get('/customer/edit/', [CustomersController::class, 'editcustomer'])->name("customer.edit");
+
 
         Route::get('/items', [ItemsController::class, 'items'])->name('item.list');
         Route::get('/add-item', [ItemsController::class, 'addItem'])->name('addItem.list');
         Route::post('/add-item', [ItemsController::class, 'createItem'])->name('addItem.create');
+        Route::get('/item/delete/{id}', [ItemsController::class, 'delete'])->name("item.delete");
+
 
         Route::get('/invoices', [InvoicesController::class, 'invoices'])->name('invoice.list');
         Route::post('/invoices/item', [InvoicesController::class, 'itemSold'])->name('itemSold.list');
-
+        Route::get('/invoices/delete/{id}', [InvoicesController::class, 'delete'])->name("invoice.delete");
 
         Route::get('/invoicesCreate', [InvoicesController::class, 'invoicesCreate'])->name('invoice.create');
         Route::post('/invoicesCreate', [InvoicesController::class, 'saleItemCreate'])->name('saleItem.create');
@@ -60,12 +65,20 @@ Route::group(['prefix' => 'admin'], function () {
         Route::get('/expenses', [ExpensesController::class, 'expenses'])->name('expenses.list');
         Route::get('/add-expenses', [ExpensesController::class, 'addExpenses'])->name('addExpenses.list');
         Route::post('/add-expenses', [ExpensesController::class, 'createExpenses'])->name('addExpenses.create');
+        Route::get('/expenses/delete/{id}', [ExpensesController::class, 'delete'])->name("expenses.delete");
 
-        Route::get('/expensesCategory', [ExpensesController::class, 'expensesCategory'])->name('expensesCategory.list');
+         Route::get('/expensesCategory', [ExpensesController::class, 'expensesCategory'])->name('expensesCategory.list');
+         Route::get('/add-expensesCategory', [ExpensesController::class, 'addExpensesCategory'])->name('addExpensesCategory.list');
+         Route::post('/add-expensesCategory', [ExpensesController::class, 'createExpensesCategory'])->name('addExpensesCategory.create');
+         Route::get('/expensesCategory/delete/{id}', [ExpensesController::class, 'expensesCategorydelete'])->name("expensesCategory.delete");
 
         Route::get('/users', [UsersController::class, 'users'])->name('user.list');
         Route::get('/add-user', [UsersController::class, 'addUser'])->name('addUser.list');
 
         Route::get('/get-customer/{id}', [ApiController::class, 'customerDetails']);
+
+
+
+
     });
 });

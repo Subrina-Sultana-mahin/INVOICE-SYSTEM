@@ -15,7 +15,7 @@ class CreateInvoiceDetailsTable extends Migration
     {
         Schema::create('invoice_details', function (Blueprint $table) {
             $table->id();
-            $table->integer('invoice_id');
+            $table->integer('invoice_id')->nullable();
             $table->integer('item_id');
             $table->integer('price');
             $table->integer('quantity');

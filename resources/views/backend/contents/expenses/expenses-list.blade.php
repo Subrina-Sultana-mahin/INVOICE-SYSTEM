@@ -38,17 +38,13 @@
         @foreach ($expenses as $key => $data)
             <tbody>
                 <tr>
-                    <th scope="row">1</th>
+                    <th scope="row">{{$key+1}}</th>
                     <td>{{$data->p_name}}</td>
                     <td>{{$data->price}}</td>
                     <td>{{$data->quantity}}</td>
                     <td>{{$data->date}}</td>
                     <td>
-                        <a class="text-primary mx-2" href="#"><i class="far fa-eye"></i></a>
-                        <a class="text-danger mx-2" href=""><i
-                                class="far fa-trash-alt"></i></a>
-                        <a class="text-success mx-2" href=""><i
-                                class="far fa-edit"></i></a>
+                        <a class="btn btn-danger" href="{{route('expenses.delete' ,$data['id'])}}"> Delete</a>
                     </td>
                 </tr>
             </tbody>

@@ -30,6 +30,7 @@
     <table class="table table-success table-striped">
         <thead>
             <tr>
+
                 <th scope="col">serial</th>
                 <th scope="col">Invoice No</th>
                 <th scope="col">Customer Id</th>
@@ -38,22 +39,22 @@
                 <th scope="col">Action</th>
             </tr>
         </thead>
-        {{-- @foreach ($products as $key => $data) --}}
+        {{-- @dd($list); --}}
+        @foreach ($list as $key => $data)
             <tbody>
                 <tr>
                     <th scope="row">1</th>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
+                    <td>{{ $data->invoice_no }}</td>
+                    <td>{{ $data->customer_id }}</td>
+                    <td>{{ $data->total_amount }}</td>
+                    <td>{{ $data->created_at }}</td>
                     <td>
-                        <a class="text-primary mx-2" href="#"><i class="far fa-eye"></i></a>
-                        <a class="text-danger mx-2" href=""><i
-                                class="far fa-trash-alt"></i></a>
+                        <a class="btn btn-danger" href="{{route('invoice.delete' ,$data['id'])}}"> Delete</a>
+
                     </td>
                 </tr>
             </tbody>
-        {{-- @endforeach --}}
+        @endforeach
     </table>
 
 

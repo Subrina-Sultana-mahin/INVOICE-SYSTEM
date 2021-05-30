@@ -13,7 +13,8 @@ use Illuminate\Http\Request;
 class InvoicesController extends Controller
 {
     public function invoices(){
-        return view('backend.contents.invoices.invoices-list');
+        $list = Invoice::all();
+        return view('backend.contents.invoices.invoices-list',compact('list'));
     }
 
     public function invoicesCreate(){
@@ -22,21 +23,27 @@ class InvoicesController extends Controller
         $addItem = Cart::all();
         $totalItems = 0;
         $totalPrice = 0;
+        // dd($addItem);
+
         foreach($addItem as $data)
         {
             $totalItems += $data->item_quantity;
-            $totalPrice += $data->price;
+            $totalPrice += $data->subtotal;
+            $customer_id=$data->customer_id;
         }
-        return view('backend.contents.invoices.invoice-create',compact('items','addItem','customer','totalItems','totalPrice'));
+        $customer_id=1;
+        return view('backend.contents.invoices.invoice-create',compact('items','addItem','customer','totalItems','totalPrice','customer_id'));
     }
 
 
     public function saleItemCreate(Request $request){
 
+        // dd($request->all());
+
         $item = Item::where('id',$request->item_id)->first();
            $subtotal = $request->item_quantity * $item->price;
-
             Cart::create([
+                'customer_id'=>$request->customer_id,
                 'item_id'=>$request->item_id,
                 'item_quantity'=>$request->item_quantity,
                 'price'=>$item->price,
@@ -56,6 +63,10 @@ class InvoicesController extends Controller
 
 
     public function itemSold(Request $request){
+
+        // dd($request->all());
+
+
         $item = invoice::create([
             'total_amount' => $request->total_amount,
             'customer_id' => $request->customer_id,
@@ -96,6 +107,11 @@ class InvoicesController extends Controller
         $cartItem->delete();
 
         return redirect()->route('saleItem.create');
+    }
+    public function delete($id) {
+        $invoice = Invoice::find($id);
+        $invoice->delete();
+        return redirect()->back();
     }
 
 

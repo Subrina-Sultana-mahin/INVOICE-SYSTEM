@@ -29,4 +29,15 @@ class CustomersController extends Controller
         ]);
         return redirect()->route('addCustomer.list')->with('success-message','Customer successfully created.');
     }
+    public function delete($id) {
+        $customer = Customer::find($id);
+        $customer->delete();
+        return redirect()->back();
+    }
+    // public function editcustomer() {
+    //     $customer = Customer::find();
+    //     return view('backend.contents.customers.edit',compact('customer'));
+
+
+    // }
 }

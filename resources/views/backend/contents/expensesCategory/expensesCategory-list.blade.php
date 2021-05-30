@@ -3,8 +3,8 @@
 
 <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
     <h1 class="h2">Expenses Category</h1>
-     <a href="{{route('addExpenses.list')}}" type="button" class="btn btn-success">
-        Add Expense
+     <a href="{{route('addExpensesCategory.list')}}" type="button" class="btn btn-success">
+        Add Expense Category
     </a>
 </div>
 
@@ -31,25 +31,23 @@
             <th scope="col">serial</th>
             <th scope="col">Expense Name</th>
             <th scope="col">Description</th>
+            <th scope="col">Date</th>
             <th scope="col">Action</th>
         </tr>
     </thead>
-    {{-- @foreach ($expensesCategory as $key => $data) --}}
+    @foreach ($expensesCategory as $key => $data)
         <tbody>
             <tr>
-                <th scope="row">1</th>
-                <td></td>
-                <td></td>
+                <th scope="row">{{$key+1}}</th>
+                <td>{{$data->e_name}}</td>
+                <td>{{$data->description}}</td>
+                <td>{{$data->date}}</td>
                 <td>
-                    <a class="text-primary mx-2" href="#"><i class="far fa-eye"></i></a>
-                    <a class="text-danger mx-2" href=""><i
-                            class="far fa-trash-alt"></i></a>
-                    <a class="text-success mx-2" href=""><i
-                            class="far fa-edit"></i></a>
+                    <a class="btn btn-danger" href="{{route('expensesCategory.delete' ,$data['id'])}}"> Delete</a>
                 </td>
             </tr>
         </tbody>
-        {{-- @endforeach --}}
+         @endforeach
 </table>
 
 @endsection

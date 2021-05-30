@@ -30,4 +30,9 @@ class ItemsController extends Controller
         ]);
         return redirect()->route('addItem.list')->with('success-message','Item successfully created.');
     }
+    public function delete($id) {
+        $item = Item::find($id);
+        $item->delete();
+        return redirect()->back();
+    }
 }
