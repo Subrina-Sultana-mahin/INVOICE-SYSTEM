@@ -21,7 +21,7 @@
           </div>
         <div class="col-12">
           <button type="submit" class="btn btn-primary">Save Expenses</button>
-          <button  class="btn btn-primary">Cancle</button>
+          <button  class="btn btn-primary">Cancel</button>
         </div>
       </form>
 

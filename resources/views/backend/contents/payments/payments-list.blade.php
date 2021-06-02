@@ -2,9 +2,11 @@
 @section('content')
     <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
         <h1 class="h2">Payments</h1>
+        @if (auth()->user()->role == 'admin')
         <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#exampleModal">
             Add Payment
         </button>
+        @endif
     </div>
 
     @if ($errors->any())
@@ -22,70 +24,78 @@
             {{ session()->get('success-message') }}
         </div>
     @endif
+    @if (session()->has('error-message'))
+        <div class="alert alert-danger">
+            {{ session()->get('error-message') }}
+        </div>
+    @endif
 
 
     <table class="table table-success table-striped">
         <thead>
             <tr>
                 <th scope="col">serial</th>
-                <th scope="col">Payment No</th>
-                <th scope="col">Customer Name</th>
+                <th scope="col">Invoice No</th>
                 <th scope="col">Total Amount</th>
+                <th scope="col">Paid Amount</th>
+                <th scope="col">Due Amount</th>
+                <th scope="col">Status</th>
                 <th scope="col">Date</th>
                 <th scope="col">Action</th>
             </tr>
         </thead>
-        {{-- @foreach ($products as $key => $data) --}}
+        @foreach ($payment as $key => $data)
             <tbody>
                 <tr>
-                    <th scope="row">1</th>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
+                    <th scope="row">{{$key+1}}</th>
+                    <td>Invoice#{{ $data->paymentInvoice->invoice_no }}</td>
+                    <td>{{ $data->paymentInvoice->total_amount }} BDT</td>
+                    <td>{{ $data->paidAmount }} BDT</td>
+                    <td>{{ $data->dueAmount }} BDT</td>
+                    <td>{{ $data->status }}</td>
+                    <td>{{ $data->created_at->format('Y-m-d') }}</td>
                     <td>
-                        <a class="btn btn-danger" href="#"> Delete</a>
+                        <a class="btn btn-danger" href="{{route('payment.delete' ,$data['id'])}}"> Delete</a>
                     </td>
+
                 </tr>
             </tbody>
-        {{-- @endforeach --}}
+        @endforeach
     </table>
+    {{-- @dd($invoice); --}}
 
     {{-- modal --}}
     <div>
-        <form>
+        <form method="post" action="{{ route('payment.create') }}">
             @csrf
             <div class="modal fade " id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div class="modal-dialog modal-dialog modal-dialog-scrollable">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLabel">Add New Product</h5>
+                            <h5 class="modal-title" id="exampleModalLabel">Create Payment</h5>
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
 
 
                         <div class="modal-body">
                             <div class="mb-3">
-                                <label for="exampleFormControlInput1" class="form-label">Product Name</label>
-                                <input type="text" name="name" class="form-control" id="exampleFormControlInput1"
-                                    placeholder="Product Name">
+                                <label for="exampleFormControlInput1" class="form-label">Invoice No</label>
+                                <select class="form-select" name="invoice_id">
+                                    <option selected>Select Invoice</option>
+                                    @foreach ($invoice as $data)
+                                        <option value="{{$data->id}}" >Invoice#{{ $data->invoice_no }} -
+                                            @if ($data->invoicePayment)
+                                                {{ $data->invoicePayment->dueAmount }} BDT
+                                                @else
+                                                {{$data->total_amount}}BDT
+                                            @endif</option>
+                                    @endforeach
+                                </select>
                             </div>
 
                             <div class="mb-3">
-                                <label for="">Upload Image</label>
-                                <input name="product_image" type="file" class="form-control">
-                            </div>
-
-
-                            <div class="mb-3">
-                                <label for="exampleFormControlInput1" class="form-label">Product Quantity</label>
-                                <input type="number" name="quantity" class="form-control" id="exampleFormControlInput1"
-                                    placeholder="500">
-                            </div>
-                            <div class="mb-3">
-                                <label for="exampleFormControlInput1" class="form-label">Unit Price</label>
-                                <input type="double" name="unit_price" class="form-control" id="exampleFormControlInput1"
-                                placeholder="1000BDT">
+                                <label for="">Enter Amount</label>
+                                <input name="paidAmount" type="number" class="form-control">
                             </div>
                         </div>
 

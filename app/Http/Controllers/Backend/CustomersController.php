@@ -20,6 +20,9 @@ class CustomersController extends Controller
     }
     public function createCustomer(Request $request){
 
+        $request->validate([
+            'email' => 'unique:customers'
+        ]);
         Customer::create([
             'f_name'=>$request->f_name,
             'l_name'=>$request->l_name,
@@ -27,7 +30,7 @@ class CustomersController extends Controller
             'address'=>$request->address,
             'phone'=>$request->phone
         ]);
-        return redirect()->route('addCustomer.list')->with('success-message','Customer successfully created.');
+        return redirect()->route('customer.list')->with('success-message','Customer successfully created.');
     }
     public function delete($id) {
         $customer = Customer::find($id);

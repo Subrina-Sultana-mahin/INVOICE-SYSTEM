@@ -36,6 +36,7 @@ Route::get('/logout', [UsersController::class, 'logout'])->name('logout');
 Route::group(['prefix' => 'admin'], function () {
     Route::group(['middleware' => 'admin-middleware'], function () {
         Route::get('/dashboard', [HomeController::class, 'home'])->name('home');
+        Route::get('/dashboard', [HomeController::class, 'dashboard'])->name('dashboard');
         //customers
         Route::get('/customers', [CustomersController::class, 'customers'])->name('customer.list');
         Route::get('/add-customer', [CustomersController::class, 'addCustomer'])->name('addCustomer.list');
@@ -53,6 +54,7 @@ Route::group(['prefix' => 'admin'], function () {
         Route::get('/invoices', [InvoicesController::class, 'invoices'])->name('invoice.list');
         Route::post('/invoices/item', [InvoicesController::class, 'itemSold'])->name('itemSold.list');
         Route::get('/invoices/delete/{id}', [InvoicesController::class, 'delete'])->name("invoice.delete");
+        Route::get('/invoices/view/{id}', [InvoicesController::class, 'view'])->name("invoice.view");
 
         Route::get('/invoicesCreate', [InvoicesController::class, 'invoicesCreate'])->name('invoice.create');
         Route::post('/invoicesCreate', [InvoicesController::class, 'saleItemCreate'])->name('saleItem.create');
@@ -60,6 +62,8 @@ Route::group(['prefix' => 'admin'], function () {
 
 
         Route::get('/payments', [PaymentsController::class, 'payments'])->name('payment.list');
+        Route::post('/payments/submit', [PaymentsController::class, 'createPayments'])->name('payment.create');
+        Route::get('/payments/delete/{id}', [PaymentsController::class, 'delete'])->name("payment.delete");
 
 
         Route::get('/expenses', [ExpensesController::class, 'expenses'])->name('expenses.list');
@@ -75,7 +79,6 @@ Route::group(['prefix' => 'admin'], function () {
         Route::get('/users', [UsersController::class, 'users'])->name('user.list');
         Route::get('/add-user', [UsersController::class, 'addUser'])->name('addUser.list');
 
-        Route::get('/get-customer/{id}', [ApiController::class, 'customerDetails']);
 
 
 

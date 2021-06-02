@@ -4,6 +4,15 @@
 <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
     <h1 class="h2">Add Customer</h1>
 </div>
+@if ($errors->any())
+        <div class="alert alert-danger">
+            <ul>
+                @foreach ($errors->all() as $error)
+                    {{ $error }}
+                @endforeach
+            </ul>
+        </div>
+    @endif
 <div class="container p-5">
     <form class="row g-3 d-flex justify-content-center p-5 bg-light shadow border" action="{{route('addCustomer.create')}}" method="post">
       @csrf
@@ -29,7 +38,7 @@
         </div>
         <div class="col-12">
           <button type="submit" class="btn btn-primary">Submit</button>
-          <button  class="btn btn-primary">Cancle</button>
+          <button  class="btn btn-primary">Cancel</button>
         </div>
       </form>
 

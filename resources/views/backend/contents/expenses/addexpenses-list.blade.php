@@ -8,24 +8,26 @@
     <form class="row g-3 d-flex justify-content-center p-5 bg-light shadow border" action="{{route('addExpenses.create')}}" method="post">
         @csrf
         <div class="col-md-6">
-            <label for="inputEmail4" class="form-label">Product Name</label>
-            <input type="text" class="form-control" id="inputEmail4" name="p_name" placeholder="Name">
+            <label for="inputEmail4" class="form-label">Expense</label>
+            <select class="form-select" name="expenseCategory_id">
+                <option selected>Select Expense</option>
+                @foreach ($expensesCategory as $data)
+                    <option value="{{$data->id}}" >{{ $data->e_name }} </option>
+                @endforeach
+            </select>
           </div>
           <div class="col-md-6">
             <label for="inputEmail4" class="form-label">Price</label>
             <input type="double" class="form-control" id="inputEmail4" name="price">
           </div>
-        <div class="col-md-6">
-          <label for="inputEmail4" class="form-label">Quantity</label>
-          <input type="double" class="form-control" id="inputEmail4" name="quantity">
-        </div>
+
         <div class="col-md-6">
             <label for="inputEmail4" class="form-label">Date</label>
             <input type="date" class="form-control" id="inputEmail4" name="date">
           </div>
         <div class="col-12">
-          <button type="submit" class="btn btn-primary">Save Item</button>
-          <button  class="btn btn-primary">Cancle</button>
+          <button type="submit" class="btn btn-primary">Add</button>
+          <button  class="btn btn-primary">Cancel</button>
         </div>
       </form>
 

@@ -28,9 +28,8 @@
         <thead>
             <tr>
                 <th scope="col">serial</th>
-                <th scope="col">Product Name</th>
-                <th scope="col">Product Price</th>
-                <th scope="col">Quantity</th>
+                <th scope="col">Expense</th>
+                <th scope="col">Expense Price</th>
                 <th scope="col">Date</th>
                 <th scope="col">Action</th>
             </tr>
@@ -39,9 +38,8 @@
             <tbody>
                 <tr>
                     <th scope="row">{{$key+1}}</th>
-                    <td>{{$data->p_name}}</td>
+                    <td>{{$data->expensesCategories->e_name}}</td>
                     <td>{{$data->price}}</td>
-                    <td>{{$data->quantity}}</td>
                     <td>{{$data->date}}</td>
                     <td>
                         <a class="btn btn-danger" href="{{route('expenses.delete' ,$data['id'])}}"> Delete</a>

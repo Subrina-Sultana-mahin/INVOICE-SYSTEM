@@ -28,47 +28,22 @@
         {{-- @dd($customer); --}}
 
         <input type="hidden" name="total_amount" value="{{$totalPrice}}">
-        <input type="hidden" name="customer_id" value="{{$customer_id}}">
+        <div class="mb-3">
 
-
-    {{-- <div class="row">
-        <div class="col-md-6">
-            <div class="row mb-3">
-                <label for="inputPassword3" class="col-sm-2 col-form-label">Customer Name</label>
-                <div class="col-sm-10">
-                    <input type="text" name="customer_name" class="form-control" id="customer_name" readonly>
-                </div>
-            </div>
-
-            <div class="row mb-3">
-                <label for="inputEmail3" class="col-sm-2 col-form-label fw-bolder">Email</label>
-                <div class="col-sm-10">
-                    <select class="form-select" name="customer_id" id="customer_id">
-                        <option value="">select customer email</option>
-                        @foreach ($customer as $data)
-                            <option value="{{ $data->id }}">{{ $data->email }}</option>
-                        @endforeach
-                    </select>
-                </div>
+            <div class="mb-3">
+                <label for="exampleFormControlInput1" class="form-label">Customer</label>
+                <select class="form-select" name="customer_id">
+                    <option selected>Select customer</option>
+                    @foreach ($customer as $data)
+                        <option value="{{$data->id}}" >{{ $data->email}}</option>
+                    @endforeach
+                </select>
             </div>
 
         </div>
-        <div class="col-md-6">
-            <div class="row mb-3">
-                <label for="inputPassword3" class="col-sm-2 col-form-label">Phone</label>
-                <div class="col-sm-10">
-                    <input type="text" name="phone" class="form-control" id="customer_phone" readonly>
-                </div>
-            </div>
 
-            <div class="row mb-3">
-                <label for="inputPassword3" class="col-sm-2 col-form-label">Invoice No.</label>
-                <div class="col-sm-10">
-                    <input type="text" name="invoice_no" id="invoice_no" class="form-control" id="invoice_no" readonly >
-                </div>
-            </div>
-        </div>
-    </div> --}}
+
+
     {{-- add product for sale --}}
     <div class="d-flex justify-content-end">
         <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#exampleModal">
@@ -104,7 +79,7 @@
                 </tr>
             </tbody>
             @endforeach
-
+            <input type="hidden" name="invoice_no" id="invoice_no" >
             <tfoot>
                 <td colspan="2"></td>
                 <td colspan="2" class="fw-bold">Total sold Product Quantity= {{$totalItems}}  </td>
@@ -131,19 +106,7 @@
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div class="modal-body">
-                            <div class="mb-3">
 
-                                <div class="mb-3">
-                                    <label for="exampleFormControlInput1" class="form-label">Customer</label>
-                                    <select class="form-select" name="customer_id">
-                                        <option selected>Select customer</option>
-                                        @foreach ($customer as $data)
-                                            <option value="{{$data->id}}" >{{ $data->email}}</option>
-                                        @endforeach
-                                    </select>
-                                </div>
-
-                            </div>
                             <div class="mb-3">
                                 <label for="exampleFormControlInput1" class="form-label">Item</label>
                                 <select class="form-select" name="item_id">
@@ -173,31 +136,3 @@
 </div>
 
 @endsection
-
-@push('customer_js')
-    <script>
-        let customer_id = document.querySelector('#customer_id');
-        let customer_name = document.querySelector('#customer_name');
-        let customer_phone = document.querySelector('#customer_phone');
-        let invoice_no = document.querySelector('#invoice_no');
-
-
-
-        customer_id.addEventListener('change', (e) => {
-            let id = e.target.value;
-
-            const url = "{{ url('get-customer') }}/" + id;
-            fetch(url)
-                .then(res => res.json())
-                .then(res => {
-                    customer_name.value = res.data.f_name+' '+res.data.l_name;
-                    customer_phone.value = res.data.phone;
-                    invoice_no.value = res.invoice_no;
-                })
-        })
-
-
-
-
-    </script>
-@endpush

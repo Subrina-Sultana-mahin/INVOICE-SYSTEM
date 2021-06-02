@@ -16,8 +16,8 @@ class ExpensesController extends Controller
     }
     public function addExpenses()
     {
-
-        return view('backend.contents.expenses.addexpenses-list');
+        $expensesCategory = ExpensesCategory::all();
+        return view('backend.contents.expenses.addexpenses-list',compact('expensesCategory'));
     }
 
     public function expensesCategory()
@@ -36,12 +36,11 @@ class ExpensesController extends Controller
     {
 
         Expense::create([
-            'p_name' => $request->p_name,
+            'expenseCategory_id' => $request->expenseCategory_id,
             'price' => $request->price,
-            'quantity' => $request->quantity,
             'date' => $request->date
         ]);
-        return redirect()->route('addExpenses.list')->with('success-message', 'Expenses successfully created.');
+        return redirect()->route('expenses.list')->with('success-message', 'Expenses successfully created.');
     }
     public function createExpensesCategory(Request $request)
     {
@@ -50,7 +49,7 @@ class ExpensesController extends Controller
             'description' => $request->description,
             'date' => $request->date
         ]);
-        return redirect()->route('addExpensesCategory.list')->with('success-message', 'Expenses Category successfully created.');
+        return redirect()->route('expensesCategory.list')->with('success-message', 'Expenses Category successfully created.');
     }
 
 

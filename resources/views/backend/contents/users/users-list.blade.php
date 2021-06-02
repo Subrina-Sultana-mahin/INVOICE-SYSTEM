@@ -2,9 +2,9 @@
 @section('content')
     <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
         <h1 class="h2">Users</h1>
-        <a href="{{route('addUser.list')}}" type="button" class="btn btn-success">
+        {{-- <a href="{{route('addUser.list')}}" type="button" class="btn btn-success">
             Add User
-        </a>
+        </a> --}}
     </div>
 
     @if ($errors->any())
@@ -30,29 +30,24 @@
                 <th scope="col">serial</th>
                 <th scope="col">User Name</th>
                 <th scope="col">User Email</th>
-                <th scope="col">Address</th>
-                <th scope="col">Phone</th>
-                <th scope="col">Action</th>
+                <th scope="col">Role</th>
             </tr>
         </thead>
-        {{-- @foreach ($products as $key => $data) --}}
+        @foreach ($users as $key => $data)
             <tbody>
                 <tr>
-                    <th scope="row">1</th>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td>
-                        <a class="btn btn-danger" href="#"> Delete</a>
-                    </td>
+                    <th scope="row">{{ $key+1 }}</th>
+                    <td>{{ $data->name }}</td>
+                    <td>{{ $data->email }}</td>
+                    <td>{{ $data->role }}</td>
+
                 </tr>
             </tbody>
-        {{-- @endforeach --}}
+        @endforeach
     </table>
 
     {{-- modal --}}
-    <div>
+    {{-- <div>
         <form>
             @csrf
             <div class="modal fade " id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -96,6 +91,6 @@
         </form>
     </div>
     </div>
-    </div>
+    </div> --}}
 
 @endsection

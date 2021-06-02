@@ -28,7 +28,7 @@ class ItemsController extends Controller
             'price'=>$request->price,
             'date'=>$request->date
         ]);
-        return redirect()->route('addItem.list')->with('success-message','Item successfully created.');
+        return redirect()->route('item.list')->with('success-message','Item successfully created.');
     }
     public function delete($id) {
         $item = Item::find($id);

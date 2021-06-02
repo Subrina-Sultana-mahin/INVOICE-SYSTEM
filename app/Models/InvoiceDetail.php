@@ -9,7 +9,7 @@ class InvoiceDetail extends Model
 {
     protected $guarded=[];
     use HasFactory;
-    public function itemDetails(){
-        return $this->belongsTo(Product::class,'item_id','id');
+    public function invoiceItem(){
+        return $this->belongsTo(Item::class,'item_id','id');
     }
 }

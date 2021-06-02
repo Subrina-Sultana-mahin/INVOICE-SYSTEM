@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -10,7 +11,8 @@ class UsersController extends Controller
 {
     public function users()
     {
-        return view('backend.contents.users.users-list');
+        $users = User::all();
+        return view('backend.contents.users.users-list',compact('users'));
     }
     public function addUser()
     {
@@ -34,10 +36,10 @@ class UsersController extends Controller
         if (Auth::attempt($credentials)) {
             $request->session()->regenerate();
             if (auth()->user()->role == 'admin') {
-                return redirect()-> route('home');
+                return redirect()-> route('dashboard');
             }
             elseif(auth()->user()->role == 'superAdmin') {
-                return redirect()-> route('home');
+                return redirect()-> route('dashboard');
             }
         }
         return back()->withErrors([
