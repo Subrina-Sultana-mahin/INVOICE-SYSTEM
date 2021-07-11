@@ -35,7 +35,9 @@
                 <th scope="col">Unit</th>
                 <th scope="col">Unit Price</th>
                 <th scope="col">Date</th>
+                @if (auth()->user()->role == 'superAdmin')
                 <th scope="col">Action</th>
+                @endif
             </tr>
         </thead>
         {{-- @dd($item) --}}
@@ -47,9 +49,11 @@
                     <td>{{$data->unit}}</td>
                     <td>{{$data->price}}BDT</td>
                     <td>{{$data->date}}</td>
+                    @if (auth()->user()->role == 'superAdmin')
                     <td>
                         <a class="btn btn-danger" href="{{route('item.delete' ,$data['id'])}}"> Delete</a>
                     </td>
+                    @endif
                 </tr>
             </tbody>
             @endforeach

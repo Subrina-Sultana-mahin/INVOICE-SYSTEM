@@ -64,7 +64,7 @@
                 </tr>
             </thead>
             {{-- @dd($addItem); --}}
-            @foreach ($addItem as $key=>$item)
+            @foreach ($addItem as $key => $item)
 
             <tbody class="text-center">
                 <tr>

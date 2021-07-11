@@ -52,7 +52,7 @@
         </div>
     </div>
     <div class="col-md-4 ">
-        <div class="card text-white shadow" style="background-color:rgb(194, 179, 180); width: 20rm; height:10rem">
+        <div class="card text-white shadow" style="background-color:rgb(194, 163, 165); width: 20rm; height:10rem">
             <div class="card-body">
                 <h5><span data-feather="users"></span>
                     <small>Due Payment</small> </h5>
@@ -65,7 +65,7 @@
 {{-- 3rd row --}}
 <div class="row m-3">
     <div class="col-md-4 ">
-        <div class="card text-white shadow" style="background-color:rgb(168, 111, 149); width: 20rm;height:10rem;">
+        <div class="card text-white shadow" style="background-color:rgb(109, 71, 96); width: 20rm;height:10rem;">
             <div class="card-body">
                 <h5><span data-feather="alert-triangle"></span>
                     <small>Total User</small> </h5>
@@ -74,7 +74,7 @@
         </div>
     </div>
     <div class="col-md-4 ">
-        <div class="card text-white shadow" style="background-color:rgb(225, 240, 160);width: 20rm; height:10rem">
+        <div class="card text-white shadow" style="background-color:rgb(221, 245, 116);width: 20rm; height:10rem">
             <div class="card-body">
                 <h5><span data-feather="user-x"></span>
                     <small>Total Expenses</small> </h5>
@@ -83,7 +83,7 @@
         </div>
     </div>
     <div class="col-md-4 ">
-        <div class="card text-white shadow" style="background-color:rgb(144, 143, 182); width: 20rm;height:10rem;">
+        <div class="card text-white shadow" style="background-color:rgb(102, 101, 136); width: 20rm;height:10rem;">
             <div class="card-body">
                 <h5><span data-feather="git-merge"></span>
                     <small>Todays Expenses</small> </h5>

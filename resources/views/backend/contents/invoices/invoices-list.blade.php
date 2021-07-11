@@ -29,11 +29,7 @@
         </div>
     @endif
 
-    @if (session()->has('success-message'))
-        <div class="alert alert-success">
-            {{ session()->get('success-message') }}
-        </div>
-    @endif
+
 
 
     <table class="table table-success table-striped">
@@ -52,7 +48,7 @@
         @foreach ($list as $key => $data)
             <tbody>
                 <tr>
-                    <th scope="row">1</th>
+                    <th scope="row">{{$key+1}}</th>
                     <td>{{ $data->invoice_no }}</td>
                     <td>{{ $data->customer->f_name}} {{ $data->customer->l_name }} </td>
                     <td>{{ $data->total_amount }}</td>

@@ -4,7 +4,7 @@
         <h1 class="h2">Payments</h1>
         @if (auth()->user()->role == 'admin')
         <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#exampleModal">
-            Add Payment
+            Create Payment
         </button>
         @endif
     </div>
